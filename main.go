@@ -1,10 +1,9 @@
 package main
 
-import "github.com/NameSurname/Assignment1/Library"
-
 import (
 	"bufio"
 	"fmt"
+	"github.com/AskatNarinbetov/Assignment1/Library"
 	"os"
 	"strings"
 )
@@ -16,7 +15,10 @@ func main() {
 	for {
 		fmt.Println("\nLibrary Management System")
 		fmt.Println("1. Add book")
-		fmt.Println("2. Exit")
+		fmt.Println("2.Borrow a book")
+		fmt.Println("3. Return a book")
+		fmt.Println("4. List of books")
+		fmt.Println("5. Exit")
 		fmt.Println("Choose and option: ")
 		var choice int
 		fmt.Scanln(&choice)
@@ -37,6 +39,18 @@ func main() {
 
 			library.AddBook(Library.Book{ID: id, Title: title, Author: author, IsBorrowed: false})
 		case 2:
+			fmt.Println("Enter a book id to borrow")
+			scanner.Scan()
+			id := strings.TrimSpace(scanner.Text())
+			library.BorrowBook(id)
+		case 3:
+			fmt.Println("Enter a book id to return")
+			scanner.Scan()
+			id := strings.TrimSpace(scanner.Text())
+			library.ReturnBook(id)
+		case 4:
+			library.ListBooks()
+		case 5:
 			fmt.Println("Exiting... Bye!")
 			return
 		default:
